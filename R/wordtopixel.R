@@ -24,3 +24,26 @@ mxy <- cbind(y_axis = case_when(
   stringr::str_length(rownames(mx)) == 1 ~ paste0("y0", rownames(mx)),
   TRUE                                   ~ "error"
 ), mx)
+
+# convert 2 row level data using pivot longer
+mxyl <- mxy |>
+  pivot_longer(cols = !y_axis, names_to = "x_axis", values_to = "values")
+
+# pixelword function to plot gif
+pixelword <- function(word) {
+  plot <- ggplot2::ggplot(
+    data = mxyl,
+    mapping = aes(
+      x = x_axis,
+      y = y_axis,
+      fill = values
+      )
+    ) +
+    ggplot2::scale_fill_viridis_c(option="magma") +
+    ggplot2::geom_raster() +
+    ggplot2::theme_classic() +
+    ggplot2::theme(legend.position = "none") +
+    ggeasy::easy_remove_axes()
+
+  return(plot)
+}
