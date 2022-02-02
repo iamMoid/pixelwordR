@@ -1,12 +1,10 @@
 Package: pixelwordR
-Title: What the Package Does (One Line, Title Case)
+Title: Converts words into colorful pixelated gifs!
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Abdul Moid", "Mohammed", , "ibaad90@gmail.com", role = c("aut", "cre"))
+Description: Converts the input word into gifs by pixelating the letters.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
