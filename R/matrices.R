@@ -65,6 +65,26 @@ matrix_gen <- function(letter) {
     mx[c(5, 11), 7] = 0
   } else if (letter == "T") {
     mx[c(4:11), c(1:2, 6:7)] = 0
+  } else if (letter == "U") {
+    mx[11, c(1, 7)] = 0
+    mx[c(1:8), 4] = 0
+  } else if (letter == "V") {
+    mx[10, c(1, 7)] = 0
+    mx[11, c(1, 2, 6, 7)] = 0
+    mx[c(1:8), 4] = 0
+  } else if (letter == "X") {
+    mx[6, c(1, 7)] = 0
+    mx[c(1:4, 8:11), 4] = 0
+  } else if (letter == "Y") {
+    mx[7, c(1, 7)] = 0
+    mx[8:11, c(1, 2, 6, 7)] = 0
+    mx[c(1:4), 4] = 0
+  } else if (letter == "Z") {
+    mx[4, c(1:3)] = 0
+    mx[5, c(1:2)] = 0
+    mx[6, c(1, 7)] = 0
+    mx[7, c(6:7)] = 0
+    mx[8, c(5:7)] = 0
   }
 
   mxf <- mx * mxr
