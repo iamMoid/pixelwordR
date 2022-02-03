@@ -3,7 +3,7 @@ library("dplyr")
 library("stringr")
 
 matrix_gen <- function(letter) {
-  if (!letter %in% c("M", "Q", "W")) {
+  if (!letter %in% c("M", "N", "Q", "W")) {
     r = 11
     c = 7
 
@@ -44,9 +44,6 @@ matrix_gen <- function(letter) {
       mx[6, 7] = 0
     } else if (letter == "L") {
       mx[c(1:8), c(4:7)] = 0
-    } else if (letter == "N") {
-      mx[c(4:11), 4] = 0
-      mx[1, 7] = 0
     } else if (letter == "O") {
       mx[c(1, 11), c(1, 7)] = 0
       mx[c(4:8), 4] = 0
@@ -112,11 +109,22 @@ matrix_gen <- function(letter) {
     mxr <- matrix(data = runif(r * c, 1, 5), nrow = r, ncol = c)
     mx <- matrix(data = 1L, nrow = r, ncol = c)
     if (letter == "M") {
-      mx[c(4:11), c(4, 8)] = 0
-      mx[1, 11] = 0
+      mx[c(1, 8:11), c(4:8)] = 0
+      mx[c(6, 7), c(4, 8)] = 0
+      mx[c(2, 7), c(5, 7)] = 0
+      mx[c(2, 3), 6] = 0
+    } else if (letter == "N") {
+      mx[c(1:2, 11), c(4:8)] = 0
+      mx[c(7:10), 4] = 0
+      mx[c(3, 8:10), 5] = 0
+      mx[c(3:4, 9:10), 6] = 0
+      mx[c(3:5, 10), 7] = 0
+      mx[c(3:6), 8] = 0
     } else if (letter == "W") {
-      mx[c(1:8), c(4, 8)] = 0
-      mx[11, 11] = 0
+      mx[c(1:4, 11), c(4:8)] = 0
+      mx[c(5, 6), c(4, 8)] = 0
+      mx[c(5, 10), c(5, 7)] = 0
+      mx[c(9, 10), 6] = 0
     }
 
     mxf <- mx * mxr
