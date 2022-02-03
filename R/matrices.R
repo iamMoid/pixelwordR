@@ -16,6 +16,26 @@ matrix_gen <- function(letter) {
   } else if (letter == "B") {
     mx[c(1, 6, 11), 7] = 0
     mx[c(4, 8), 4] = 0
+  } else if (letter == "C") {
+    mx[c(1, 11), c(1, 7)] = 0
+    mx[c(4:8), 4] = 0
+    mx[6, c(5:7)] = 0
+  } else if (letter == "D") {
+    mx[c(1, 11), 7] = 0
+    mx[c(4:8), 4] = 0
+  } else if (letter == "E") {
+    mx[c(4, 8), c(4:7)] = 0
+  } else if (letter == "F") {
+    mx[c(4, 8:11), c(4:7)] = 0
+  } else if (letter == "G") {
+    mx[c(1, 11), 1] = 0
+    mx[1, 7] = 0
+    mx[c(4, 5, 8), 4] = 0
+    mx[5, c(5:7)] = 0
+  } else if (letter == "H") {
+    mx[c(1:4, 8:11), 4] = 0
+  } else if (letter == "I") {
+    mx[c(4:8), c(1:2, 6:7)] = 0
   }
 
   mxf <- mx * mxr
