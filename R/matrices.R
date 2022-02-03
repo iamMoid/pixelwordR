@@ -1,8 +1,6 @@
 library("tidyverse")
 library("dplyr")
 library("stringr")
-library("ggplot2")
-library("ggeasy")
 
 matrix_gen <- function(letter) {
   if (!letter %in% c("M", "Q", "W")) {
@@ -90,14 +88,6 @@ matrix_gen <- function(letter) {
 
     mxf <- mx * mxr
 
-    colnames(mxf) <- c("x01", "x02", "x03", "x04", "x05", "x06", "x07")
-    rownames(mxf) <- c("y11", "y10", "y09", "y08", "y07", "y06", "y05", "y04", "y03", "y02", "y01")
-
-    mxl <- mxf |>
-      as.data.frame() |>
-      rownames_to_column("y_axis") |>
-      pivot_longer(-c(y_axis), names_to = "x_axis", values_to = "values")
-
   } else if (letter %in% c("Q")) {
 
     r = 11
@@ -113,14 +103,6 @@ matrix_gen <- function(letter) {
     }
 
     mxf <- mx * mxr
-
-    colnames(mxf) <- c("x01", "x02", "x03", "x04", "x05", "x06", "x07", "x08", "x09")
-    rownames(mxf) <- c("y11", "y10", "y09", "y08", "y07", "y06", "y05", "y04", "y03", "y02", "y01")
-
-    mxl <- mxf |>
-      as.data.frame() |>
-      rownames_to_column("y_axis") |>
-      pivot_longer(-c(y_axis), names_to = "x_axis", values_to = "values")
 
   } else {
 
@@ -139,15 +121,7 @@ matrix_gen <- function(letter) {
 
     mxf <- mx * mxr
 
-    colnames(mxf) <- c("x01", "x02", "x03", "x04", "x05", "x06", "x07", "x08", "x09", "x10", "x11")
-    rownames(mxf) <- c("y11", "y10", "y09", "y08", "y07", "y06", "y05", "y04", "y03", "y02", "y01")
-
-    mxl <- mxf |>
-      as.data.frame() |>
-      rownames_to_column("y_axis") |>
-      pivot_longer(-c(y_axis), names_to = "x_axis", values_to = "values")
-
   }
 
-return(mxl)
+return(mxf)
 }
