@@ -36,6 +36,35 @@ matrix_gen <- function(letter) {
     mx[c(1:4, 8:11), 4] = 0
   } else if (letter == "I") {
     mx[c(4:8), c(1:2, 6:7)] = 0
+  } else if (letter == "J") {
+    mx[c(1:7), c(1:4)] = 0
+    mx[11, c(1, 7)] = 0
+    mx[8, 4] = 0
+  } else if (letter == "K") {
+    mx[c(1:4, 8:11), 4] = 0
+    mx[6, 7] = 0
+  } else if (letter == "L") {
+    mx[c(1:8), c(4:7)] = 0
+  } else if (letter == "N") {
+    mx[c(4:11), 4] = 0
+    mx[1, 7] = 0
+  } else if (letter == "O") {
+    mx[c(1, 11), c(1, 7)] = 0
+    mx[c(4:8), 4] = 0
+  } else if (letter == "P") {
+    mx[c(1, 7), 7] = 0
+    mx[4, 4] = 0
+    mx[c(8:11), c(4:7)] = 0
+  } else if (letter == "R") {
+    mx[c(1, 6), 7] = 0
+    mx[c(4, 8:11), 4] = 0
+  } else if (letter == "S") {
+    mx[4, c(4:7)] = 0
+    mx[8, c(1:4)] = 0
+    mx[c(1, 7), 1] = 0
+    mx[c(5, 11), 7] = 0
+  } else if (letter == "T") {
+    mx[c(4:11), c(1:2, 6:7)] = 0
   }
 
   mxf <- mx * mxr
