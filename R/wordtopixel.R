@@ -3,6 +3,7 @@ library("dplyr")
 library("stringr")
 library("ggplot2")
 library("ggeasy")
+library("cowplot")
 
 #' Create a colorful pixelated gif for the input word
 #'
@@ -31,19 +32,33 @@ mxyl <- mxy |>
 
 # pixelword function to plot gif
 pixelword <- function(word) {
-  plot <- ggplot2::ggplot(
-    data = matrix_gen(word),
-    mapping = aes(
-      x = x_axis,
-      y = y_axis,
-      fill = values
-      )
-    ) +
-    ggplot2::scale_fill_viridis_c(option="magma", direction = -1) +
-    ggplot2::geom_raster() +
-    ggplot2::theme_classic() +
-    ggplot2::theme(legend.position = "none") +
-    ggeasy::easy_remove_axes()
+  letters <- stringr::str_split(word, "")[[1]]
 
-  return(plot)
+  vpad <- matrix(data = 0L, nrow = 11, ncol = 2)
+
+  pixel_banner <- vpad
+
+  for (letter in letters) {
+    print(letter)
+    pixel_matrix <- matrix_gen(letter)
+    pixel_banner <- cbind(pixel_banner, pixel_matrix, vpad)
+  }
+
+  hpad <- matrix(data = 0L, nrow = 2, ncol = ncol(pixel_banner))
+  pixel_banner <- rbind(hpad, pixel_banner, hpad)
+
+  colnames(pixel_banner) <- paste0("x", 1:ncol(pixel_banner))
+  colnames(pixel_banner)[1:9] <- paste0("x0", 1:9)
+
+  rownames(pixel_banner) <- paste0("y", 1:nrow(pixel_banner))
+  rownames(pixel_banner)[1:9] <- paste0("y0", 1:9)
+
+  pixel_banner_l <- pixel_banner |>
+    as.data.frame() |>
+    rownames_to_column("y_axis") |>
+    pivot_longer(-c(y_axis), names_to = "x_axis", values_to = "values")
+
+  banner <- pixelplot(pixel_banner_l)
+
+return(banner)
 }
