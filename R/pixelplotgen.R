@@ -6,7 +6,7 @@ pixelplot <- function(matrix_data) {
     data = matrix_data,
     mapping = aes(
       x = x_axis,
-      y = y_axis,
+      y = reorder(y_axis, desc(y_axis)),
       fill = values
     )
   ) +
