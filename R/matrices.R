@@ -4,26 +4,24 @@ library("stringr")
 library("ggplot2")
 library("ggeasy")
 
-matrix_gen <- function(l) {
+matrix_gen <- function(letter) {
   r = 11
   c = 7
   p = 2
-  mxr <- matrix(data = runif((r + p * 2) * (c + p), 1, 5), nrow = r + p * 2, ncol = c + p)
-  if (l == "A") {
-    mx <- matrix(data = 1L, nrow = r + p * 2, ncol = c + p)
-    mx[1 + p, c(1 + p/2, 7 + p/2)] = 0
-    mx[4 + p, 4 + p/2] = 0
-    mx[(8 + p):(11 + p), 4 + p/2] = 0
-    mx[1:p,] = 0
-    mx[(r + p + 1):(r + p * 2),] = 0
-    mx[,1] = 0
-    mx[,c + p] = 0
+  mxr <- matrix(data = runif(r * c, 1, 5), nrow = r, ncol = c)
+  mx <- matrix(data = 1L, nrow = r, ncol = c)
+  if (letter == "A") {
+    mx[1, c(1, 7)] = 0
+    mx[c(4, 8:11), 4] = 0
+  } else if (letter == "B") {
+    mx[c(1, 6, 11), 7] = 0
+    mx[c(4, 8), 4] = 0
   }
 
   mxf <- mx * mxr
 
-  colnames(mxf) <- c("x01", "x02", "x03", "x04", "x05", "x06", "x07", "x08", "x09")
-  rownames(mxf) <- c("y15", "y14", "y13", "y12", "y11", "y10", "y09", "y08", "y07", "y06", "y05", "y04", "y03", "y02", "y01")
+  colnames(mxf) <- c("x01", "x02", "x03", "x04", "x05", "x06", "x07")
+  rownames(mxf) <- c("y11", "y10", "y09", "y08", "y07", "y06", "y05", "y04", "y03", "y02", "y01")
 
   mxl <- mxf |>
     as.data.frame() |>
