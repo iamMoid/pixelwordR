@@ -1,9 +1,6 @@
 library("tidyverse")
 library("dplyr")
 library("stringr")
-library("ggplot2")
-library("ggeasy")
-library("cowplot")
 
 #' Create a colorful pixelated gif for the input word
 #'
@@ -59,6 +56,13 @@ pixelword <- function(word) {
     pivot_longer(-c(y_axis), names_to = "x_axis", values_to = "values")
 
   banner <- pixelplot(pixel_banner_l)
+
+  ggsave("docs/banner.png",
+         plot = banner,
+         height = 20 * nrow(pixel_banner),
+         width = 15 * ncol(pixel_banner),
+         units = c("px"),
+         dpi = 600)
 
 return(banner)
 }
