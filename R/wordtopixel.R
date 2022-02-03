@@ -32,14 +32,14 @@ mxyl <- mxy |>
 # pixelword function to plot gif
 pixelword <- function(word) {
   plot <- ggplot2::ggplot(
-    data = mxyl,
+    data = matrix_gen(word),
     mapping = aes(
       x = x_axis,
       y = y_axis,
       fill = values
       )
     ) +
-    ggplot2::scale_fill_viridis_c(option="magma") +
+    ggplot2::scale_fill_viridis_c(option="magma", direction = -1) +
     ggplot2::geom_raster() +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
