@@ -20,7 +20,7 @@ pixelplot <- function(matrix_data, type = "") {
   if (type == "") {
     plot <- plot + ggplot2::geom_raster()
   } else {
-    plot <- plot + ggplot2::geom_point(size = 0.1)
+    plot <- plot + ggplot2::geom_point(shape = "\u2764", size = 0.4)
   }
 
 return(plot)
