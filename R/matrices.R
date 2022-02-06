@@ -2,7 +2,7 @@ library("tidyverse")
 library("dplyr")
 library("stringr")
 
-matrix_gen <- function(letter) {
+matrix_gen <- function(letter, type = "") {
   if (!letter %in% c("M", "N", "Q", "W")) {
     r = 11
     c = 7
@@ -131,5 +131,9 @@ matrix_gen <- function(letter) {
 
   }
 
-return(mxf)
+  if (type == "point") {
+    return(mxf)
+  } else {
+    return(mxf)
+  }
 }
