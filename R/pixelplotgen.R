@@ -1,7 +1,7 @@
 library("ggplot2")
 library("ggeasy")
 
-pixelplot <- function(matrix_data, type = "") {
+pixelplot <- function(matrix_data, type = "", shape = "") {
   plot <- ggplot2::ggplot(
     data = matrix_data,
     mapping = aes(
@@ -20,7 +20,11 @@ pixelplot <- function(matrix_data, type = "") {
   if (type == "") {
     plot <- plot + ggplot2::geom_raster()
   } else {
-    plot <- plot + ggplot2::geom_point(shape = "\u2764", size = 0.4)
+    plot <- plot + ggplot2::geom_point(shape = shape, size = 5)
+    # star: "\u2605"
+    # heart: "\u2764"
+    # smiley: "\u263A"
+    # sparkles: "\u2728"
   }
 
 return(plot)
