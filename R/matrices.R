@@ -3,12 +3,13 @@ library("dplyr")
 library("stringr")
 
 matrix_gen <- function(letter, type = "") {
+
   if (!letter %in% c("M", "N", "Q", "W", " ", ".", "!")) {
+
     r = 11
     c = 7
-
-    mxr <- matrix(data = runif(r * c, 1, 5), nrow = r, ncol = c)
     mx <- matrix(data = 1L, nrow = r, ncol = c)
+
     if (letter == "A") {
       mx[1, c(1, 7)] = 0
       mx[c(4, 8:11), 4] = 0
@@ -83,15 +84,12 @@ matrix_gen <- function(letter, type = "") {
       mx[8, c(5:7)] = 0
     }
 
-    mxf <- mx * mxr
-
   } else if (letter %in% c("Q")) {
 
     r = 11
     c = 9
-
-    mxr <- matrix(data = runif(r * c, 1, 5), nrow = r, ncol = c)
     mx <- matrix(data = 1L, nrow = r, ncol = c)
+
     if (letter == "Q") {
       mx[c(1, 11), c(1, 7)] = 0
       mx[c(4, 5, 8), 4] = 0
@@ -99,15 +97,12 @@ matrix_gen <- function(letter, type = "") {
       mx[9, 9] = 0
     }
 
-    mxf <- mx * mxr
-
   } else if (letter %in% c("M", "W", "N")) {
 
     r = 11
     c = 11
-
-    mxr <- matrix(data = runif(r * c, 1, 5), nrow = r, ncol = c)
     mx <- matrix(data = 1L, nrow = r, ncol = c)
+
     if (letter == "M") {
       mx[c(1, 8:11), c(4:8)] = 0
       mx[c(6, 7), c(4, 8)] = 0
@@ -127,15 +122,12 @@ matrix_gen <- function(letter, type = "") {
       mx[c(9, 10), 6] = 0
     }
 
-    mxf <- mx * mxr
-
   } else if (letter %in% c(" ", ".", "!")) {
 
     r = 11
     c = 2
-
-    mxr <- matrix(data = runif(r * c, 1, 5), nrow = r, ncol = c)
     mx <- matrix(data = 1L, nrow = r, ncol = c)
+
     if (letter == " ") {
       mx[c(1:11), c(1:2)] = 0
     } else if (letter == ".") {
@@ -145,12 +137,7 @@ matrix_gen <- function(letter, type = "") {
       mx[9, c(1:2)] = 0
     }
 
-    mxf <- mx * mxr
   }
 
-  if (type == "point") {
-    return(mxf)
-  } else {
-    return(mxf)
-  }
+return(mx)
 }
