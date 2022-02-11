@@ -142,16 +142,15 @@ matrix_gen_s <- function(letter, type = "") {
   } else if (letter %in% c(" ", ".", "!")) {
 
     r = 11
-    c = 2
-    mx <- matrix(data = 1L, nrow = r, ncol = c)
+    c = 1
+    mx <- matrix(data = 0L, nrow = r, ncol = c)
 
     if (letter == " ") {
-      mx[c(1:11), c(1:2)] = 0
+    
     } else if (letter == ".") {
-      mx[c(1:10), 1] = 0
-      mx[c(1:11), 2] = 0
+      mx[8, 1] = 1
     } else if (letter == "!") {
-      mx[9, c(1:2)] = 0
+      mx[c(1:6, 8), 1] = 1
     }
 
   }
