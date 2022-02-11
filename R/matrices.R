@@ -4,7 +4,8 @@ library("stringr")
 
 matrix_gen <- function(letter, type = "") {
 
-  if (!letter %in% c("M", "N", "Q", "W", " ", ".", "!")) {
+  if (letter %in% c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+                    "L", "O", "P", "R", "S", "T", "U", "V", "X", "Y", "Z")) {
 
     r = 11
     c = 7
