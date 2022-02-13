@@ -35,14 +35,18 @@ pixelword <- function(word, type = "", shape = "\u2605") {
   letters <- stringr::str_split(word, "")[[1]]
 
   # define vertical padding/spacing between letters
-  vpad <- matrix(data = 0L, nrow = 11, ncol = 2)
+  vpad <- matrix(data = 0L, nrow = 12, ncol = 1)
 
   # initialize output banner
   pixel_banner <- vpad
 
   # consolidate letter matrices into a banner separated by padding
   for (letter in letters) {
-    pixel_matrix <- matrix_gen(letter, type)
+    if (stringr::str_detect(letter, "^[:upper:]")) {
+      pixel_matrix <- matrix_gen_l(letter, type)
+    } else {
+      pixel_matrix <- matrix_gen_s(letter, type)
+    }
     pixel_banner <- cbind(pixel_banner, pixel_matrix, vpad)
   }
 
@@ -101,12 +105,14 @@ pixelword <- function(word, type = "", shape = "\u2605") {
             gganimate::transition_time(layer)
 
   # create animation
-  animation <- animate(banner, nframes = 10, rewind = TRUE,
-                       height = nrow(pixel_banner)/2, width = ncol(pixel_banner)/2,
+  animation <- animate(banner,
+                       nframes = 10, rewind = TRUE,
+                       height = nrow(pixel_banner)/2,
+                       width = ncol(pixel_banner)/2,
                        units = "cm", res = 150)
 
   # save animation under docs folder
-  anim_save("docs/banner.gif", animation)
+  # anim_save("docs/banner.gif", animation)
 
 return(animation)
 }
