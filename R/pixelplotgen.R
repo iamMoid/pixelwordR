@@ -8,10 +8,12 @@ pixelplot <- function(matrix_data, type = "", shape = "") {
       x = x_axis,
       y = reorder(y_axis, desc(y_axis)),
       color = values,
-      fill = values
+      fill = values,
+      size = values
     )
   ) +
-    ggplot2::scale_color_viridis_c(option = "viridis", direction = -1) +
+    # ggplot2::scale_colour_gradient(low = "lightpink", high = "red") +
+    ggplot2::scale_color_viridis_c(option = "magma", direction = -1) +
     ggplot2::scale_fill_viridis_c(option = "viridis", direction = 1) +
     ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "none") +
@@ -20,7 +22,7 @@ pixelplot <- function(matrix_data, type = "", shape = "") {
   if (type == "") {
     plot <- plot + ggplot2::geom_raster()
   } else {
-    plot <- plot + ggplot2::geom_point(shape = shape, size = 5)
+    plot <- plot + ggplot2::geom_point(shape = shape)
     # star: "\u2605"
     # heart: "\u2764"
     # smiley: "\u263A"
